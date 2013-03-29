@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="shankara" basedir="." default="all">
+	<target name="all">
+	</target>
+</project>
