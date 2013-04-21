@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="shankara-proto1" basedir="." default="all">
+	<property name="markup.dir" value="${basedir}/markup" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="war.prep.dir" value="war-prep" />
+	<property name="war.name" value="shankaraProto.war" />
+	<property name="webcontent.dir" value="${basedir}/WebContent" />
+	<property name="dep.dir" value="${basedir}/deployable"/>
+	<property name="resources.dir" value="${basedir}/resources"/>
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${build.dir}/${war.prep.dir}" />
+		<delete dir="${build.dir}/classes"/>
+	</target>
+	
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/classes"/>
+		<mkdir dir="${build.dir}/${war.prep.dir}" />
+		<mkdir dir="${build.dir}/resources"/>
+	</target>
+	
+	<target name="compile" depends="prepare">
+		<javac fork="true" srcdir="${src.dir}" destdir="${build.dir}/classes" 
+			classpathref="classpath" memoryinitialsize="512m" memorymaximumsize="512m" debug="true" />
+	</target>
+	
+	<target name="create.war" depends="compile">
+		<copydir dest="${build.dir}/resources" src="${resources.dir}"></copydir>
+		<war destfile="${dep.dir}/${war.name}" webxml="${webcontent.dir}/WEB-INF/web.xml">
+			<fileset dir="${webcontent.dir}">
+				<include name="**/*.html"/>
+				<include name="**/*.js"/>
+			</fileset>
+			<fileset dir="${build.dir}" >
+				<include name="resources/*.properties"/>
+			</fileset>
+			<classes dir="${build.dir}/classes"/>
+			<lib dir="${lib.dir}"/>
+		</war>
+	</target>
+	
+	<target name="all" depends="create.war">
+		<tstamp>
+			<format property="build.time" pattern="MM/dd/yyyy HH:mm:ss aa"/>
+		</tstamp>
+		<echo message="build completed at: ${build.time}"/>
+	</target>
+</project>

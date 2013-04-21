@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"
+	type="text/javascript"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+	type="text/javascript"></script>
+<script src="../script/emp.js" type="text/javascript"></script>
+<script src="../script/feed.js" type="text/javascript"></script>
+</head>
+<body>
+	<form id="myAjaxRequestForm">
+		<fieldset>
+			<legend>Employee Search:</legend>
+			<p>
+				<label for="emplastNm">LastName:</label><br /> <input
+					id="emplastNm" type="text" name="employeeId" />
+			</p>
+			<p>
+				<label for="empfstNm">FirstName:</label><br /> <input
+					id="empfstNm" type="text" name="employeeId" />
+			</p>
+			<p>
+				<input id="myButton" type="button" value="Submit" />
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend>Feed Trial</legend>
+			<p>
+				<label for="feedName">Feed:</label><br /> <input
+					id="feedName" type="text" name="feedURL" />
+			</p>
+			
+			<p>
+				<input id="getFeed" type="button" value="Submit" />
+			</p>
+		</fieldset>
+	</form>
+	<div id="empSrchSection">
+		<fieldset>
+			<legend>Employee Search Result</legend>
+			<div id="empResponse"></div>
+		</fieldset>
+	</div>
+	<div id="feedSection">
+		<fieldset>
+			<legend>Feed Response</legend>
+			<div id="feedResponse"></div>
+		</fieldset>
+	</div>
+</body>
+</html>
